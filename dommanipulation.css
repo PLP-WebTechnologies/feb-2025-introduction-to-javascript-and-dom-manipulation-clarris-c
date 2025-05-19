@@ -1,0 +1,42 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const dynamicText = document.getElementById('dynamic-text');
+    const changeTextBtn = document.getElementById('change-text-btn');
+    const toggleStyleBtn = document.getElementById('toggle-style-btn');
+    const addRemoveBtn = document.getElementById('add-remove-btn');
+    const contentSection = document.getElementById('content-section');
+
+    // Function to change text content
+    changeTextBtn.addEventListener('click', () => {
+        const currentText = dynamicText.textContent;
+        dynamicText.textContent = currentText === 'This text will change dynamically.'
+            ? 'The text has now been changed! JavaScript is powerful.'
+            : 'This text will change dynamically.';
+    });
+
+    // Function to toggle background color style on content section
+    toggleStyleBtn.addEventListener('click', () => {
+        if (contentSection.style.backgroundColor === 'lightyellow') {
+            contentSection.style.backgroundColor = '';
+            contentSection.style.color = '';
+        } else {
+            contentSection.style.backgroundColor = 'lightyellow';
+            contentSection.style.color = '#444';
+        }
+    });
+
+    // Function to add or remove a new paragraph dynamically
+    let addedParagraph = null;
+    addRemoveBtn.addEventListener('click', () => {
+        if (!addedParagraph) {
+            addedParagraph = document.createElement('p');
+            addedParagraph.textContent = 'This paragraph was dynamically added by JavaScript!';
+            addedParagraph.style.fontWeight = 'bold';
+            contentSection.appendChild(addedParagraph);
+            addRemoveBtn.textContent = 'Remove Element';
+        } else {
+            contentSection.removeChild(addedParagraph);
+            addedParagraph = null;
+            addRemoveBtn.textContent = 'Add/Remove Element';
+        }
+    });
+});
